@@ -1,5 +1,6 @@
 {
-  "name": "newsapp",
+  "homepage": "https://mukul0512.github.io/NewsToday",
+  "name": "NewsToday",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
