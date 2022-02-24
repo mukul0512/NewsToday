@@ -14,7 +14,7 @@ const News = (props) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const updateNews = async() => {
+    const updateNews = async () => {
         props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
         // this.setState({ loading: true });
@@ -34,7 +34,7 @@ const News = (props) => {
         document.title = `${capitalizeFirstLetter(props.category)} - NewsToday`;
         updateNews();
         // eslint-disable-next-line
-       }, []);
+    }, []);
 
     // async componentDidMount() {
     //     // console.log("cdm");
@@ -103,36 +103,36 @@ const News = (props) => {
     };
 
     // render() {
-        // console.log("render");
-        return (
-            <>
-                <h1 className="text-center" style={{ margin: '35px', marginTop: '90px' }}>NewsToday - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
-                {loading && <Spinner />}
+    // console.log("render");
+    return (
+        <>
+            <h1 className="text-center" style={{ margin: '35px', marginTop: '90px' }}>NewsToday - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            {loading && <Spinner />}
 
-                <InfiniteScroll
-                    dataLength={articles.length}
-                    next={fetchMoreData}
-                    hasMore={articles.length !== totalResults}
-                    loader={<Spinner />}
-                >
-                    <div className="container">
-                        <div className="row">
-                            {articles.map((element) => {
-                                return <div className="col-md-4" key={element.url} >
-                                    <NewsItem title={element.title ? element.title.slice(0, 45) : ""} description={element.description ? element.description.slice(0, 88) : ""} imgUrl={element.urlToImage} alt="News Img" newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
-                                </div>
-                            })}
-                        </div>
+            <InfiniteScroll
+                dataLength={articles.length}
+                next={fetchMoreData}
+                hasMore={articles.length !== totalResults}
+                loader={<Spinner />}
+            >
+                <div className="container">
+                    <div className="row">
+                        {articles.map((element) => {
+                            return <div className="col-md-4" key={element.url} >
+                                <NewsItem title={element.title ? element.title.slice(0, 45) : ""} description={element.description ? element.description.slice(0, 88) : ""} imgUrl={element.urlToImage} alt="News Img" newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                            </div>
+                        })}
                     </div>
-                </InfiniteScroll>
+                </div>
+            </InfiniteScroll>
 
-                {/* <div className="container d-flex justify-content-between">
+            {/* <div className="container d-flex justify-content-between">
                     <button disabled={page <= 1} type="button" className="btn btn-dark" onClick={handlePrevClick}>Previous &larr;</button>
                     <button disabled={page + 1 > Math.ceil(totalResults / pageSize)} type="button" className="btn btn-dark" onClick={handleNextClick}>Next &rarr;</button>
                 </div> */}
-            </>
-        )
-    }
+        </>
+    )
+}
 // }
 
 News.defaultProps = {
